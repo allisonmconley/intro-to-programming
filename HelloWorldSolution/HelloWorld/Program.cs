@@ -16,5 +16,5 @@ if (minutes is not null)
 }
 else
 {
-    Console.WriteLine("Enter some minutes, moron");
+    Console.WriteLine("Enter some minutes, pal");
 }
