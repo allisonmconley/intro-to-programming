@@ -1,28 +1,25 @@
-﻿
+﻿using Banking.UnitTests.TestDoubles;
 
-using Banking.Domain;
+namespace Banking.UnitTests;
 
-namespace Banking.UnitTests
+public class MakingDeposits
 {
-    public class MakingDeposits
+    [Theory]
+    [InlineData(100)]
+    [InlineData(50)]
+    public void MakingDepositsIncreasesBalance(decimal amountToDeposit)
     {
-        [Theory]
-        [InlineData(100)]
-        [InlineData(50)]
-        public void MakingDepositsIncreaseBalances(decimal amountToDeposit)
-        {
-            //Given
-            var account = new BankAccount();
-            var openingBalance = account.GetBalance();
-            
-            //When
-            account.Deposit(amountToDeposit);
+        // Given
+        var account = new BankAccount(new DummyBonusCalculator());
+        var openingBalance = account.GetBalance();
 
-            //Then
-            Assert.Equal(amountToDeposit + openingBalance,
-                account.GetBalance());
+        // When
+        account.Deposit(amountToDeposit);
 
-            
-        }
+        // Then
+        Assert.Equal(amountToDeposit + openingBalance,
+            account.GetBalance());
+
+
     }
 }

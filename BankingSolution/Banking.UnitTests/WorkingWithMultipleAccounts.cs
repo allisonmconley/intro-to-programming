@@ -1,21 +1,21 @@
 ﻿
+using Banking.UnitTests.TestDoubles;
 
-namespace Banking.UnitTests
+namespace Banking.UnitTests;
+
+public class WorkingWithMultipleAccounts
 {
-    public class WorkingWithMultipleAccounts
+    [Fact]
+    public void InstancesOfOurAccountAreIsolated()
     {
-        [Fact]
+        var bobsAccount = new BankAccount(new DummyBonusCalculator());
+        var suesAccount = new BankAccount(new DummyBonusCalculator());
 
-        public void InstancesOfOurAccountAreIsolated()
-        {
-            var bobsAccount = new BankAccount();
-            var suesAccount = new BankAccount();
+        bobsAccount.Deposit(1000M);
+        suesAccount.Withdraw(suesAccount.GetBalance());
 
-            bobsAccount.Deposit(1000m);
-            suesAccount.Withdraw(suesAccount.GetBalance());
+        Assert.Equal(6000, bobsAccount.GetBalance());
+        Assert.Equal(0, suesAccount.GetBalance());
 
-            Assert.Equal(6000, bobsAccount.GetBalance());
-            Assert.Equal(0, suesAccount.GetBalance());
-        }
     }
 }
