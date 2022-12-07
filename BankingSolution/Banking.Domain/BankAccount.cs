@@ -9,7 +9,14 @@
         }
         public void Withdraw(decimal amountToWithdraw)
         {
-            _balance = _balance - amountToWithdraw;
+            if (amountToWithdraw > _balance)
+            {
+                throw new OverdraftException();
+            }
+            else
+            {
+                _balance = _balance - amountToWithdraw;
+            }
         }
         public decimal GetBalance()
         {
