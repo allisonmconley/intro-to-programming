@@ -1,7 +1,5 @@
 ﻿namespace Banking.UnitTests.TestDoubles;
 
-
-
 // Canned responses to questions.
 public class StubbedBonusCalculator : ICalculateBonuses
 {
