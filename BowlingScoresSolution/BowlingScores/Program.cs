@@ -37,3 +37,5 @@ foreach (var loser in game.LowScores())
 {
     Console.WriteLine($"Loser: {loser.player} with a score of {loser.score}");
 }
+var winners = game.HighScores();
+winners.Add(new BowlingGameRecord("Jeff", 800));
